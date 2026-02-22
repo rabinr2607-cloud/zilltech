@@ -1,0 +1,144 @@
+<!-- ═══════════════ PAGE HERO ═══════════════ -->
+<section class="page-hero section-primary" aria-label="Contact hero">
+    <div class="page-hero__bg" aria-hidden="true"></div>
+    <div class="container page-hero__container">
+        <div class="page-hero__content" data-aos="fade-up">
+            <span class="eyebrow-light">Let's Talk</span>
+            <h1 class="page-hero__title">Start Your<br><span class="page-hero__highlight">Transformation</span></h1>
+            <p class="page-hero__subtitle">Have a project in mind? Our experts are ready to help you design the right
+                technology solution for your business needs.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ CONTACT SECTION ═══════════════ -->
+<section class="contact section section-light" aria-label="Contact form and information">
+    <div class="container">
+        <div class="contact__grid">
+
+            <!-- Form -->
+            <div class="contact__form-wrap" data-aos="fade-right">
+                <div class="contact__form-card">
+                    @if (!formSubmitted()) {
+                    <h2 class="contact__form-title">Send Us a Message</h2>
+                    <p class="contact__form-sub">Fill out the form and our team will get back to you within 24 hours.
+                    </p>
+
+                    <form class="contact__form" (ngSubmit)="onSubmit()" #contactForm="ngForm" novalidate>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name" class="form-label">Full Name *</label>
+                                <input id="name" name="name" type="text" class="form-input" placeholder="John Smith"
+                                    [(ngModel)]="formData.name" required autocomplete="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="form-label">Business Email *</label>
+                                <input id="email" name="email" type="email" class="form-input"
+                                    placeholder="john@company.com" [(ngModel)]="formData.email" required
+                                    autocomplete="email">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="company" class="form-label">Company Name</label>
+                                <input id="company" name="company" type="text" class="form-input"
+                                    placeholder="Acme Corporation" [(ngModel)]="formData.company"
+                                    autocomplete="organization">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input id="phone" name="phone" type="tel" class="form-input"
+                                    placeholder="+1 (555) 000-0000" [(ngModel)]="formData.phone" autocomplete="tel">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service" class="form-label">Service Interest</label>
+                            <select id="service" name="service" class="form-input form-select"
+                                [(ngModel)]="formData.service">
+                                <option value="">Select a service...</option>
+                                @for (s of services; track s) {
+                                <option [value]="s">{{ s }}</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="form-label">Your Message *</label>
+                            <textarea id="message" name="message" class="form-input form-textarea"
+                                placeholder="Describe your project, goals, or questions..."
+                                [(ngModel)]="formData.message" required rows="5"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn--primary btn--submit" [disabled]="isLoading()">
+                            @if (isLoading()) {
+                            <span class="btn-spinner" aria-label="Sending..."></span>
+                            Sending...
+                            } @else {
+                            Send Message →
+                            }
+                        </button>
+                    </form>
+                    } @else {
+                    <div class="contact__success" role="alert">
+                        <div class="contact__success-icon" aria-hidden="true">✅</div>
+                        <h3>Message Sent Successfully!</h3>
+                        <p>Thank you for reaching out. Our team will contact you within 24 business hours.</p>
+                        <button class="btn btn--outline-primary" (click)="resetForm()">Send Another Message</button>
+                    </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Info -->
+            <div class="contact__info" data-aos="fade-left">
+                <h2 class="contact__info-title">Get in Touch</h2>
+                <p class="contact__info-sub">We're here to help. Reach out through any channel that works best for you.
+                </p>
+
+                <div class="contact__channels">
+                    <div class="contact__channel">
+                        <div class="contact__channel-icon" aria-hidden="true">📞</div>
+                        <div>
+                            <strong>Phone</strong>
+                            <a href="tel:+919876543210" class="contact__channel-value">+91 98765 43210</a>
+                        </div>
+                    </div>
+                    <div class="contact__channel">
+                        <div class="contact__channel-icon" aria-hidden="true">✉️</div>
+                        <div>
+                            <strong>Email</strong>
+                            <a href="mailto:info@zilltechnology.com"
+                                class="contact__channel-value">info&#64;zilltechnology.com</a>
+                        </div>
+                    </div>
+                    <div class="contact__channel">
+                        <div class="contact__channel-icon" aria-hidden="true">🕐</div>
+                        <div>
+                            <strong>Hours</strong>
+                            <span class="contact__channel-value">Mon–Fri, 9am–6pm IST</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="contact__offices-title">Our Offices</h3>
+                <div class="contact__offices">
+                    @for (office of offices; track office.city) {
+                    <div class="contact__office">
+                        <div class="contact__office-header">
+                            <span class="contact__office-flag" aria-hidden="true">{{ office.flag }}</span>
+                            <div>
+                                <strong class="contact__office-city">{{ office.city }}, {{ office.country }}</strong>
+                            </div>
+                        </div>
+                        <address class="contact__office-addr">{{ office.address }}</address>
+                        <a [href]="'tel:' + office.phone.replace(/\s/g, '')" class="contact__office-phone">{{
+                            office.phone }}</a>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

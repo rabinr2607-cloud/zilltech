@@ -1,0 +1,115 @@
+<footer class="footer" role="contentinfo">
+    <!-- Top Wave -->
+    <div class="footer__wave" aria-hidden="true">
+        <svg viewBox="0 0 1440 60" fill="none" preserveAspectRatio="none">
+            <path
+                d="M0 0L48 8C96 16 192 32 288 36C384 40 480 32 576 24C672 16 768 8 864 10C960 12 1056 24 1152 28C1248 32 1344 28 1392 26L1440 24V60H1392C1344 60 1248 60 1152 60C1056 60 960 60 864 60C768 60 672 60 576 60C480 60 384 60 288 60C192 60 96 60 48 60H0V0Z"
+                fill="#0D2847" />
+        </svg>
+    </div>
+
+    <div class="footer__main">
+        <div class="container">
+            <div class="footer__grid">
+                <!-- Brand Column -->
+                <div class="footer__brand">
+                    <a routerLink="/" class="footer__logo" aria-label="Zill Technology Home">
+                        <img src="image/zillTech_Logo.png" alt="Zill Technology" width="160" height="42" loading="lazy"
+                            onerror="this.src='assets/images/logo.png'; this.style.filter='brightness(10)'">
+                    </a>
+                    <p class="footer__tagline">
+                        Transforming businesses through innovative technology solutions. Enterprise-grade IT services
+                        tailored for your growth.
+                    </p>
+                    <div class="footer__social" role="list" aria-label="Social media links">
+                        @for (social of socialLinks; track social.name) {
+                        <a [href]="social.url" target="_blank" rel="noopener noreferrer" class="footer__social-link"
+                            [attr.aria-label]="social.name" role="listitem">
+                            <i [class]="social.icon" aria-hidden="true"></i>
+                        </a>
+                        }
+                    </div>
+                </div>
+
+                <!-- Services Column -->
+                <div class="footer__col">
+                    <h3 class="footer__heading">Our Services</h3>
+                    <ul class="footer__list" role="list">
+                        @for (service of services; track service) {
+                        <li>
+                            <a routerLink="/services" class="footer__link">
+                                <span class="footer__link-arrow" aria-hidden="true">›</span>
+                                {{ service }}
+                            </a>
+                        </li>
+                        }
+                    </ul>
+                </div>
+
+                <!-- Quick Links Column -->
+                <div class="footer__col">
+                    <h3 class="footer__heading">Quick Links</h3>
+                    <ul class="footer__list" role="list">
+                        @for (link of quickLinks; track link.route) {
+                        <li>
+                            <a [routerLink]="link.route" class="footer__link">
+                                <span class="footer__link-arrow" aria-hidden="true">›</span>
+                                {{ link.label }}
+                            </a>
+                        </li>
+                        }
+                    </ul>
+                </div>
+
+                <!-- Contact Column -->
+                <div class="footer__col">
+                    <h3 class="footer__heading">Get In Touch</h3>
+                    <ul class="footer__contact-list" role="list">
+                        <li class="footer__contact-item">
+                            <span class="footer__contact-icon" aria-hidden="true">📍</span>
+                            <address class="footer__contact-text">
+                                123 Tech Park, Innovation Hub,<br>
+                                Bangalore, KA 560001, India
+                            </address>
+                        </li>
+                        <li class="footer__contact-item">
+                            <span class="footer__contact-icon" aria-hidden="true">📞</span>
+                            <a href="tel:+919876543210" class="footer__contact-text">+91 98765 43210</a>
+                        </li>
+                        <li class="footer__contact-item">
+                            <span class="footer__contact-icon" aria-hidden="true">✉️</span>
+                            <a href="mailto:info@zilltechnology.com"
+                                class="footer__contact-text">info&#64;zilltechnology.com</a>
+                        </li>
+                        <li class="footer__contact-item">
+                            <span class="footer__contact-icon" aria-hidden="true">🕐</span>
+                            <span class="footer__contact-text">Mon–Fri, 9am–6pm IST</span>
+                        </li>
+                    </ul>
+
+                    <a routerLink="/contact" class="footer__cta-btn">
+                        Start a Project →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer__bottom">
+        <div class="container">
+            <div class="footer__bottom-inner">
+                <p class="footer__copyright">
+                    © {{ currentYear }} Zill Technology. All rights reserved.
+                </p>
+                <div class="footer__legal" role="list">
+                    <a href="#" class="footer__legal-link" role="listitem">Privacy Policy</a>
+                    <span aria-hidden="true">·</span>
+                    <a href="#" class="footer__legal-link" role="listitem">Terms of Service</a>
+                    <span aria-hidden="true">·</span>
+                    <a href="#" class="footer__legal-link" role="listitem">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

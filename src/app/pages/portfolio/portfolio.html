@@ -1,0 +1,69 @@
+<!-- ═══════════════ PAGE HERO ═══════════════ -->
+<section class="page-hero section-primary" aria-label="Portfolio hero">
+    <div class="page-hero__bg" aria-hidden="true"></div>
+    <div class="container page-hero__container">
+        <div class="page-hero__content" data-aos="fade-up">
+            <span class="eyebrow-light">Case Studies</span>
+            <h1 class="page-hero__title">Real Results for<br><span class="page-hero__highlight">Real Enterprises</span>
+            </h1>
+            <p class="page-hero__subtitle">Explore how we've partnered with organizations across industries to deliver
+                transformative technology solutions with measurable impact.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ PORTFOLIO GRID ═══════════════ -->
+<section class="portfolio section section-light" aria-label="Portfolio projects">
+    <div class="container">
+        <!-- Filter Bar -->
+        <div class="portfolio__filters" role="tablist" aria-label="Filter projects by category" data-aos="fade-up">
+            @for (filter of filters; track filter.value) {
+            <button class="portfolio__filter-btn" [class.active]="activeFilter() === filter.value"
+                (click)="setFilter(filter.value)" role="tab" [attr.aria-selected]="activeFilter() === filter.value">
+                {{ filter.label }}
+            </button>
+            }
+        </div>
+
+        <div class="portfolio__grid">
+            @for (project of filteredProjects; track project.title; let i = $index) {
+            <article class="project-card" data-aos="fade-up" [attr.data-aos-delay]="i * 60">
+                <div class="project-card__header"
+                    [style.background]="'linear-gradient(135deg, ' + project.color + '18, ' + project.color + '08)'">
+                    <div class="project-card__icon-wrap" [style.background]="project.color + '20'"
+                        [style.color]="project.color">
+                        <span aria-hidden="true">{{ project.icon }}</span>
+                    </div>
+                    <span class="project-card__category">{{ project.category }}</span>
+                </div>
+                <div class="project-card__body">
+                    <h3 class="project-card__title">{{ project.title }}</h3>
+                    <p class="project-card__desc">{{ project.description }}</p>
+                    <div class="project-card__result" [style.border-color]="project.color + '40'"
+                        [style.background]="project.color + '10'">
+                        <span class="project-card__result-label">Key Result:</span>
+                        <strong [style.color]="project.color">{{ project.result }}</strong>
+                    </div>
+                    <div class="project-card__tech" role="list" aria-label="Technologies used">
+                        @for (tech of project.tech; track tech) {
+                        <span class="project-card__tech-tag" role="listitem">{{ tech }}</span>
+                        }
+                    </div>
+                </div>
+            </article>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ CTA ═══════════════ -->
+<section class="section section-dark" aria-label="Start a project CTA">
+    <div class="container" style="text-align:center" data-aos="fade-up">
+        <span class="eyebrow-light">Your Project Next?</span>
+        <h2 class="section-title" style="color:white;margin-block:1rem">Ready to Create Your<br><span
+                style="color:#7BBFFF">Success Story?</span></h2>
+        <p style="color:rgba(255,255,255,0.7);max-width:500px;margin:0 auto 2rem">Tell us your challenge. We'll design
+            and deliver a solution that delivers real, measurable results.</p>
+        <a routerLink="/contact" class="btn btn--white btn--lg">Start Your Project →</a>
+    </div>
+</section>

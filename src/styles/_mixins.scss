@@ -1,0 +1,165 @@
+// ===========================================
+// ZILL TECHNOLOGY — Mixins
+// ===========================================
+@use 'sass:map';
+@use 'variables' as *;
+
+// ─── Media Query Mixins ───────────────────
+@mixin respond-to($breakpoint) {
+    @if map.has-key($breakpoints, $breakpoint) {
+        @media (min-width: map.get($breakpoints, $breakpoint)) {
+            @content;
+        }
+    }
+
+    @else {
+        @warn "Unknown breakpoint: #{$breakpoint}";
+    }
+}
+
+@mixin respond-below($breakpoint) {
+    @if map.has-key($breakpoints, $breakpoint) {
+        @media (max-width: calc(map.get($breakpoints, $breakpoint) - 1px)) {
+            @content;
+        }
+    }
+}
+
+// ─── Layout Mixins ───────────────────────
+@mixin container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--container-padding);
+
+    @include respond-to('md') {
+        padding-inline: 2rem;
+    }
+
+    @include respond-to('xl') {
+        padding-inline: 3rem;
+    }
+}
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin grid($cols: 1, $gap: var(--space-6)) {
+    display: grid;
+    grid-template-columns: repeat(#{$cols}, 1fr);
+    gap: $gap;
+}
+
+// ─── Glassmorphism Mixin ─────────────────
+@mixin glass($bg: rgba(255, 255, 255, 0.08), $blur: 12px, $border: rgba(255, 255, 255, 0.15)) {
+    background: $bg;
+    backdrop-filter: blur($blur);
+    -webkit-backdrop-filter: blur($blur);
+    border: 1px solid $border;
+}
+
+@mixin glass-light($blur: 10px) {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur($blur);
+    -webkit-backdrop-filter: blur($blur);
+    border: 1px solid rgba(30, 95, 168, 0.1);
+}
+
+// ─── Card Mixin ─────────────────────────
+@mixin card-base {
+    background: var(--color-white);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--color-gray-200);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+
+    &:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-2xl);
+    }
+}
+
+// ─── Button Base ─────────────────────────
+@mixin btn-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-sm);
+    line-height: 1;
+    border-radius: var(--radius-md);
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 0.75rem 1.5rem;
+    letter-spacing: 0.02em;
+
+    &:focus-visible {
+        outline: 3px solid var(--color-accent);
+        outline-offset: 2px;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
+
+// ─── Text Gradient ──────────────────────
+@mixin text-gradient($start: #1E5FA8, $end: #00C4FF) {
+    background: linear-gradient(135deg, $start, $end);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+// ─── Absolute Cover ─────────────────────
+@mixin cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+// ─── Truncate ───────────────────────────
+@mixin truncate($lines: 1) {
+    @if $lines ==1 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    @else {
+        display: -webkit-box;
+        -webkit-line-clamp: $lines;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}
+
+// ─── Section Padding ───────────────────
+@mixin section-padding {
+    padding-block: 5rem;
+
+    @include respond-to('md') {
+        padding-block: 6rem;
+    }
+
+    @include respond-to('lg') {
+        padding-block: 7.5rem;
+    }
+}

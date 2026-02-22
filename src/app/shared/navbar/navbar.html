@@ -1,0 +1,54 @@
+<nav class="navbar" [class.scrolled]="isScrolled()" role="navigation" aria-label="Main navigation">
+    <div class="navbar__container">
+        <!-- Logo -->
+        <a routerLink="/" class="navbar__logo" aria-label="Zill Technology - Home" (click)="closeMobile()">
+            <img src="image/zillTech_Logo.png" alt="Zill Technology Logo" width="180" height="48" loading="eager">
+        </a>
+
+        <!-- Desktop Nav -->
+        <ul class="navbar__links" role="list">
+            @for (link of navLinks; track link.route) {
+            <li>
+                <a [routerLink]="link.route" routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: link.route === '/' }" class="navbar__link"
+                    (click)="closeMobile()">{{ link.label }}</a>
+            </li>
+            }
+        </ul>
+
+        <!-- CTA -->
+        <div class="navbar__actions">
+            <a routerLink="/contact" class="btn btn--primary btn--sm">Get Started</a>
+        </div>
+
+        <!-- Hamburger -->
+        <button class="navbar__hamburger" [class.open]="isMobileOpen()" (click)="toggleMobile()"
+            aria-label="Toggle mobile menu" [attr.aria-expanded]="isMobileOpen()" aria-controls="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-menu" class="navbar__mobile" [class.open]="isMobileOpen()" role="dialog"
+        aria-label="Mobile navigation" [attr.aria-hidden]="!isMobileOpen()">
+        <ul class="navbar__mobile-links" role="list">
+            @for (link of navLinks; track link.route) {
+            <li>
+                <a [routerLink]="link.route" routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: link.route === '/' }" class="navbar__mobile-link"
+                    (click)="closeMobile()">{{ link.label }}</a>
+            </li>
+            }
+            <li class="navbar__mobile-cta">
+                <a routerLink="/contact" class="btn btn--primary" (click)="closeMobile()">Get Started</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Overlay -->
+    @if (isMobileOpen()) {
+    <div class="navbar__overlay" (click)="closeMobile()" aria-hidden="true"></div>
+    }
+</nav>

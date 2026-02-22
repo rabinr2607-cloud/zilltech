@@ -1,0 +1,229 @@
+<!-- ═══════════════ HERO SECTION ═══════════════ -->
+<section class="hero" aria-label="Hero">
+    <div class="hero__bg-grid" aria-hidden="true"></div>
+    <div class="hero__blob hero__blob--1" aria-hidden="true"></div>
+    <div class="hero__blob hero__blob--2" aria-hidden="true"></div>
+
+    <div class="container hero__container">
+        <div class="hero__content animate-fadeInUp">
+            <span class="eyebrow">🚀 Enterprise IT Excellence</span>
+            <h1 class="hero__title">
+                Powering Your
+                <span class="text-gradient"> Digital Future</span>
+                <br>with Smart Technology
+            </h1>
+            <p class="hero__subtitle">
+                Zill Technology delivers enterprise-grade IT solutions — from cloud infrastructure and
+                cybersecurity to custom software and AI/ML — that scale with your ambitions and drive measurable
+                results.
+            </p>
+            <div class="hero__cta">
+                <a routerLink="/services" class="btn btn--primary btn--lg">
+                    Explore Services
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        aria-hidden="true">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+                <a routerLink="/contact" class="btn btn--outline btn--lg">
+                    Book a Consultation
+                </a>
+            </div>
+
+            <div class="hero__trust">
+                <div class="hero__trust-avatars" aria-hidden="true">
+                    <div class="avatar" style="background:#1E5FA8">R</div>
+                    <div class="avatar" style="background:#143F72">S</div>
+                    <div class="avatar" style="background:#2E7DD4">A</div>
+                    <div class="avatar" style="background:#5B9FE0">M</div>
+                </div>
+                <p class="hero__trust-text">
+                    <strong>120+</strong> enterprise clients trust Zill Technology
+                </p>
+            </div>
+        </div>
+
+        <div class="hero__visual animate-fadeInUp delay-300" aria-hidden="true">
+            <div class="hero__card-stack">
+                <div class="hero__float-card hero__float-card--1">
+                    <span class="hero__float-icon">☁️</span>
+                    <div>
+                        <div class="hero__float-label">Cloud Uptime</div>
+                        <div class="hero__float-value">99.9%</div>
+                    </div>
+                </div>
+                <div class="hero__float-card hero__float-card--2">
+                    <span class="hero__float-icon">🛡️</span>
+                    <div>
+                        <div class="hero__float-label">Security Events Blocked</div>
+                        <div class="hero__float-value">2.4M+</div>
+                    </div>
+                </div>
+                <div class="hero__float-card hero__float-card--3">
+                    <span class="hero__float-icon">⚡</span>
+                    <div>
+                        <div class="hero__float-label">Projects Delivered</div>
+                        <div class="hero__float-value">250+</div>
+                    </div>
+                </div>
+                <div class="hero__center-graphic">
+                    <img src="assets/images/logo.svg" alt="Zill Technology" width="120" height="120">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="hero__scroll" aria-label="Scroll down">
+        <span class="hero__scroll-line"></span>
+        <span class="hero__scroll-text">Scroll</span>
+    </div>
+</section>
+
+<!-- ═══════════════ SERVICES OVERVIEW ═══════════════ -->
+<section class="services-strip section section-light" id="services" aria-label="Services overview">
+    <div class="container">
+        <div class="section-header center" data-aos="fade-up">
+            <span class="eyebrow">What We Do</span>
+            <h2 class="section-title">Comprehensive IT Solutions<br>for <span class="highlight">Modern
+                    Enterprises</span></h2>
+            <p class="section-subtitle">From strategy to execution, we deliver end-to-end technology services that
+                accelerate growth and operational excellence.</p>
+        </div>
+
+        <div class="grid-3">
+            @for (service of services; track service.title; let i = $index) {
+            <article class="service-card" data-aos="fade-up" [attr.data-aos-delay]="i * 80">
+                <div class="service-card__icon" [style.background]="service.color + '15'" [style.color]="service.color">
+                    {{ service.icon }}
+                </div>
+                <h3 class="service-card__title">{{ service.title }}</h3>
+                <p class="service-card__desc">{{ service.description }}</p>
+                <a routerLink="/services" class="service-card__link"
+                    [attr.aria-label]="'Learn more about ' + service.title">
+                    Learn more
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        aria-hidden="true">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </article>
+            }
+        </div>
+
+        <div class="services-strip__cta" data-aos="fade-up">
+            <a routerLink="/services" class="btn btn--primary">View All Services →</a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ STATS COUNTER ═══════════════ -->
+<section class="stats section section-primary" aria-label="Company statistics">
+    <div class="stats__bg" aria-hidden="true"></div>
+    <div class="container">
+        <div class="stats__grid">
+            @for (stat of stats; track stat.label; let i = $index) {
+            <div class="stats__item" data-aos="zoom-in-up" [attr.data-aos-delay]="i * 100">
+                <div class="stats__icon" aria-hidden="true">{{ stat.icon }}</div>
+                <div class="stats__value">
+                    <span #countEl [attr.data-target]="stat.value">0</span>{{ stat.suffix }}
+                </div>
+                <div class="stats__label">{{ stat.label }}</div>
+            </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ WHY CHOOSE US ═══════════════ -->
+<section class="why-us section section-white" aria-label="Why choose Zill Technology">
+    <div class="container">
+        <div class="section-header center" data-aos="fade-up">
+            <span class="eyebrow">Our Edge</span>
+            <h2 class="section-title">Why Leading Enterprises<br>Choose <span class="highlight">Zill Technology</span>
+            </h2>
+            <p class="section-subtitle">We combine deep technical expertise with business acumen to deliver solutions
+                that truly make a difference.</p>
+        </div>
+
+        <div class="grid-3">
+            @for (item of whyUs; track item.title; let i = $index) {
+            <div class="why-card" data-aos="fade-up" [attr.data-aos-delay]="i * 80">
+                <div class="why-card__icon" aria-hidden="true">{{ item.icon }}</div>
+                <h3 class="why-card__title">{{ item.title }}</h3>
+                <p class="why-card__desc">{{ item.description }}</p>
+            </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ TESTIMONIALS ═══════════════ -->
+<section class="testimonials section section-light" aria-label="Client testimonials">
+    <div class="container">
+        <div class="section-header center" data-aos="fade-up">
+            <span class="eyebrow">Client Stories</span>
+            <h2 class="section-title">Trusted by <span class="highlight">Industry Leaders</span></h2>
+        </div>
+
+        <div class="testimonials__track" role="region" aria-live="polite" aria-label="Testimonials carousel">
+            <div class="testimonials__card" data-aos="fade-up">
+                <div class="testimonials__quote-mark" aria-hidden="true">"</div>
+                <blockquote class="testimonials__quote">
+                    {{ testimonials[activeTestimonial()].quote }}
+                </blockquote>
+                <div class="testimonials__stars" aria-label="5 star rating" role="img">
+                    @for (star of stars; track star) {
+                    <span class="testimonials__star" aria-hidden="true">★</span>
+                    }
+                </div>
+                <div class="testimonials__author">
+                    <div class="testimonials__avatar" [style.background]="testimonials[activeTestimonial()].color"
+                        aria-hidden="true">
+                        {{ testimonials[activeTestimonial()].initials }}
+                    </div>
+                    <div class="testimonials__author-info">
+                        <strong class="testimonials__author-name">{{ testimonials[activeTestimonial()].name }}</strong>
+                        <span class="testimonials__author-role">
+                            {{ testimonials[activeTestimonial()].title }}, {{ testimonials[activeTestimonial()].company
+                            }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dots -->
+        <div class="testimonials__dots" role="tablist" aria-label="Testimonial navigation">
+            @for (t of testimonials; track t.name; let i = $index) {
+            <button class="testimonials__dot" [class.active]="activeTestimonial() === i" (click)="setTestimonial(i)"
+                role="tab" [attr.aria-selected]="activeTestimonial() === i"
+                [attr.aria-label]="'Testimonial from ' + t.name"></button>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ CTA BANNER ═══════════════ -->
+<section class="cta-banner section-dark section" aria-label="Call to action">
+    <div class="cta-banner__grid-overlay" aria-hidden="true"></div>
+    <div class="container cta-banner__container">
+        <div class="cta-banner__content" data-aos="fade-up">
+            <span class="eyebrow-light">Ready to Transform?</span>
+            <h2 class="cta-banner__title">Let's Build Something<br><span class="text-gradient">Extraordinary
+                    Together</span></h2>
+            <p class="cta-banner__subtitle">Tell us about your challenge. Our experts will design a tailored solution to
+                accelerate your business.</p>
+            <div class="cta-banner__actions">
+                <a routerLink="/contact" class="btn btn--white">Get a Free Consultation</a>
+                <a routerLink="/portfolio" class="btn btn--ghost">View Our Work →</a>
+            </div>
+        </div>
+        <div class="cta-banner__deco" aria-hidden="true">
+            <div class="cta-banner__ring cta-banner__ring--1"></div>
+            <div class="cta-banner__ring cta-banner__ring--2"></div>
+            <div class="cta-banner__ring cta-banner__ring--3"></div>
+            <span class="cta-banner__emoji">🚀</span>
+        </div>
+    </div>
+</section>
